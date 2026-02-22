@@ -13,3 +13,8 @@ def project_list(request: HttpRequest) -> HttpResponse:
 
     # Renderizamos la página pasando los datos
     return render(request, "projects/project_list.html", context)
+
+
+def project_detail(request: HttpRequest, pk: int) -> HttpResponse:
+    project = Project.objects.get(pk=pk)  # pyright: ignore[reportAttributeAccessIssue]
+    return render(request, "projects/project_detail.html", {"project": project})
